@@ -1,0 +1,10 @@
+{
+    "project_name": "my awesome project",
+    "repo_name": "{{ cookiecutter.project_name|replace(' ', '-') }}",
+    "project_id": "{{ cookiecutter.repo_name }}",
+    "version": "0.0.1",
+    "_copy_without_render":[
+        "*.gitignore",
+        "*.html"
+    ]
+}

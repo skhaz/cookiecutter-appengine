@@ -1,0 +1,35 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+builtins:
+- deferred: on
+- appstats: on
+- remote_api: on
+
+libraries:
+- name: ssl
+  version: latest
+- name: pycrypto
+  version: 2.6
+
+handlers:
+- url: /_ah/queue/deferred
+  script: google.appengine.ext.deferred.deferred.application
+  login: admin
+
+- url: /favicon\.ico
+  static_files: app/static/favicon.ico
+  upload: favicon\.ico
+
+- url: /static
+  static_dir: app/static
+
+- url: .*
+  script: main.app
+  secure: always
+
+env_variables:
+  GAE_USE_SOCKETS_HTTPLIB: 'anyvalue'
+  SECRET_KEY: 'SECRET-KEY'
+  FIREBASE_PROJECT_ID: 'FIREBASE-PROJECT-ID'
